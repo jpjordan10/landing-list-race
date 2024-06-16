@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer id="footer">
-      <div className="flex flex-col gap-5 py-5 md:w-[750px] lg:w-[970px] xl:w-[1170px] mx-auto px-4">
+      <div className="flex flex-col gap-10 py-10 md:w-11/12 lg:w-10/12  mx-auto px-4">
         <div className="flex flex-wrap justify-between items-center">
           <div className="w-full md:w-1/4 mb-4 md:mb-0">
             <div className="navbar-header">
