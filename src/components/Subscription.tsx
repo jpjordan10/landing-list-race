@@ -1,6 +1,6 @@
 const Subscription = () => (
-  <section id="contact" className="py-40 bg-gray-100">
-    <div className="flex flex-col  gap-12 mx-auto px-4 text-center">
+  <section id="contact">
+    <div className="flex flex-col  gap-12 mx-auto px-4 text-center py-40 bg-gray-100 2xl:w-10/12">
       <div className="flex flex-col gap-7">
         <h2 className="font-bold uppercase text-lg md:text-2xl">
           Do you want to add your business listing with us?
