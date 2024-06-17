@@ -17,7 +17,7 @@ const Subscription = () => (
             placeholder="Enter your email here"
             className="flex-grow p-4 rounded md:rounded-l border border-gray-300"
           />
-          <button className="px-4 py-4 bg-red-500 hover:bg-red-600 text-white rounded-r">
+          <button className="p-4 bg-red-500 hover:bg-red-600 transition duration-300 text-white rounded-r">
             Create Account
           </button>
         </form>
