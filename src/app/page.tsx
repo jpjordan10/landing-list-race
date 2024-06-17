@@ -18,13 +18,13 @@ const Home = () => {
         <title>Directory Landing Page</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <Header /> */}
-      {/* <TopArea /> */}
-      {/* <WelcomeHero /> */}
-      {/* <ListTopics /> */}
+      <Header />
+      <TopArea />
+      <WelcomeHero />
+      <ListTopics />
       <Works />
       <Explore />
-      {/* <Reviews /> */}
+      <Reviews />
       <Statistics />
       <Blog />
       <Subscription />

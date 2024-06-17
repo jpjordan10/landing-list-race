@@ -5,7 +5,7 @@ const Works = () => {
       <div className="w-full lg:w-11/12 2xl:w-6/12 flex flex-col items-center gap-20 mx-auto px-4">
         <div className="flex flex-col gap-6 text-center">
           <h2 className="text-2xl font-medium uppercase">How it Works</h2>
-          <p>Learn More about how our website works</p>
+          <p className="text-gray-500">Learn More about how our website works</p>
         </div>
         <div className="xl:w-11/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {items.map((x, index) => (
