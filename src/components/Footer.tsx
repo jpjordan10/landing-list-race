@@ -1,3 +1,6 @@
+import { NAV_BAR } from "@/utils/navbar.data";
+import Link from "next/link";
+
 const Footer = () => {
   return (
     <footer id="footer">
@@ -12,54 +15,16 @@ const Footer = () => {
           </div>
           <div className="w-full md:w-3/4">
             <ul className="flex flex-wrap md:justify-end text-right gap-4 md:gap-5 text-sm uppercase text-slate-400 font-medium">
-              <li>
-                <a
-                  href="#works"
-                  className="transition duration-300 hover:text-red-500"
-                >
-                  How it works
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#explore"
-                  className="transition duration-300 hover:text-red-500"
-                >
-                  Explore
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#reviews"
-                  className="transition duration-300 hover:text-red-500"
-                >
-                  Review
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#blog"
-                  className="transition duration-300 hover:text-red-500"
-                >
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#contact"
-                  className="transition duration-300 hover:text-red-500"
-                >
-                  Contact
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#contact"
-                  className="transition duration-300 hover:text-red-500"
-                >
-                  My account
-                </a>
-              </li>
+              {NAV_BAR.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    className="text-sm uppercase transition hover:text-red-500 duration-300"
+                    href={item.href}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -104,16 +69,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        {/* TODO: ADD GO-TOP */}
-        {/* <div id="scroll-Top" className="text-center">
-          <div className="return-to-top cursor-pointer bg-red-500 p-2 rounded-full inline-block">
-            <i
-              className="fa fa-angle-up"
-              id="scroll-top"
-              aria-hidden="true"
-            ></i>
-          </div>
-        </div> */}
       </div>
     </footer>
   );

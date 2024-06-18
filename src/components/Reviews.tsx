@@ -1,40 +1,27 @@
 "use client";
+import { ReviewItem } from "@/domain";
+import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import ReviewItemLoader from "./ReviewItemLoader";
 
-const testimonials = [
-  {
-    img: "assets/images/clients/c1.png",
-    name: "Tom Leakar",
-    location: "London, UK",
-    comment:
-      "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.",
-  },
-  {
-    img: "assets/images/clients/c2.png",
-    name: "Monirul Islam",
-    location: "London, UK",
-    comment:
-      "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.",
-  },
-  {
-    img: "assets/images/clients/c3.png",
-    name: "Shohrab Hossain",
-    location: "London, UK",
-    comment:
-      "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.",
-  },
-  {
-    img: "assets/images/clients/c4.png",
-    name: "Tom Leakar",
-    location: "London, UK",
-    comment:
-      "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.",
-  },
-];
+const testimonials = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 const Reviews = () => {
+  const [reviews, setReviews] = useState<ReviewItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchExploreItems = async () => {
+      const response = await fetch("/api/reviews");
+      const data = await response.json();
+      setReviews(data);
+      setLoading(false);
+    };
+    fetchExploreItems();
+  }, []);
+
   const settings = {
     infinite: true,
     centerMode: true,
@@ -80,34 +67,37 @@ const Reviews = () => {
         </div>
         <div className="reviews-content">
           <Slider {...settings}>
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="m-4 p-6 bg-white shadow-md transition-shadow hover:shadow-lg"
-              >
-                <div className="flex flex-col gap-4">
-                  <div className="flex flex-row gap-3 items-center">
-                    <div className="">
-                      <img
-                        src={testimonial.img}
-                        alt="client"
-                        className="w-12 h-12 rounded-full"
-                      />
-                    </div>
-                    <div className="flex flex-col ml-3">
-                      <h2 className="text-lg text-gray-600 font-medium capitalize">
-                        {testimonial.name}
-                      </h2>
-                      <h4 className="text-sm text-gray-500">
-                        {testimonial.location}
-                      </h4>
-                      
+            {!loading
+              ? reviews.map((x) => (
+                  <div
+                    key={x.id}
+                    className="m-4 p-6 bg-white shadow-md transition-shadow hover:shadow-lg"
+                  >
+                    <div className="flex flex-col gap-4">
+                      <div className="flex flex-row gap-3 items-center">
+                        <div className="">
+                          <img
+                            src={x.img}
+                            alt="client"
+                            className="w-12 h-12 rounded-full"
+                          />
+                        </div>
+                        <div className="flex flex-col ml-3">
+                          <h2 className="text-lg text-gray-600 font-medium capitalize">
+                            {x.name}
+                          </h2>
+                          <h4 className="text-sm text-gray-500">
+                            {x.location}
+                          </h4>
+                        </div>
+                      </div>
+                      <p className="text-gray-600">{x.comment}</p>
                     </div>
                   </div>
-                  <p className="text-gray-600">{testimonial.comment}</p>
-                </div>
-              </div>
-            ))}
+                ))
+              : testimonials.map((_, index) => (
+                  <ReviewItemLoader key={index} />
+                ))}
           </Slider>
         </div>
       </div>
