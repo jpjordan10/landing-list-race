@@ -1,7 +1,10 @@
 "use client";
 import { ExploreItem } from "@/domain";
+import Image from "next/image";
 import { useEffect, useState } from "react";
-import ExploreItemLoader from "./ExploreItemLoader ";
+import ExploreItemLoader from "./ExploreItemLoader";
+
+const loaders = new Array(6).fill(null);
 
 const Explore = () => {
   const [exploreItems, setExploreItems] = useState<ExploreItem[]>([]);
@@ -28,7 +31,7 @@ const Explore = () => {
         </div>
         {loading ? (
           <div className="xl:w-10/12 2xl:w-7/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[...Array(6)].map((_, index) => (
+            {loaders.map((_, index) => (
               <ExploreItemLoader key={index} />
             ))}
           </div>
@@ -40,10 +43,12 @@ const Explore = () => {
                 className="group w-full flex flex-col hover:drop-shadow-2xl shadow duration-500"
               >
                 <div className="group h-52 relative">
-                  <img
+                  <Image
                     src={item.image}
                     alt="explore image"
-                    className="w-full h-full object-cover rounded-t"
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded-t"
                   />
                 </div>
                 <div className="bg-white flex flex-col gap-6 p-6">
@@ -71,9 +76,11 @@ const Explore = () => {
                   </div>
                   <div className="flex flex-col gap-5">
                     <div className="grid grid-cols-1 md:grid-cols-[auto,_minmax(0,_1fr)] gap-1 md:gap-4 pb-7 border-b">
-                      <img
+                      <Image
                         src={item.avatar}
-                        alt="avatar"
+                        alt={`explore-avatar-${item.id}`}
+                        width={40}
+                        height={40}
                         className="w-10 h-10 rounded-full bg-slate-100"
                       />
                       <p className="text-xs text-gray-500">

@@ -2,6 +2,7 @@
 import { BlogPost } from "@/domain";
 import { useEffect, useState } from "react";
 import BlogPostLoader from "./BlogPostLoader";
+import Image from 'next/image';
 
 const Blog = () => {
   const [content, setContent] = useState<BlogPost[]>([]);
@@ -39,9 +40,11 @@ const Blog = () => {
                 key={x.id}
                 className="group bg-white 2xl:max-w-md p-4 rounded duration-500 shadow-md hover:drop-shadow-2xl border border-t cursor-pointer"
               >
-                <img
+                 <Image
                   src={x.img}
-                  alt="blog image"
+                  alt= {`content-image-${x.id}`}
+                  width={500}
+                  height={300}
                   className="w-full h-48 object-cover rounded"
                 />
                 <div className="flex flex-col p-6 gap-5">

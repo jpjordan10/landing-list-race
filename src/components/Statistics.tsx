@@ -25,16 +25,18 @@ const Statistics = () => {
       { threshold: 0.5 }
     );
 
-    if (statisticsRef.current) {
-      observer.observe(statisticsRef.current);
+    const currentRef = statisticsRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (statisticsRef.current) {
-        observer.unobserve(statisticsRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
+
   return (
     <section
       id="statistics"
@@ -42,7 +44,7 @@ const Statistics = () => {
       className="relative flex items-center bg-statics-image bg-no-repeat bg-fixed bg-center bg-cover py-32"
     >
       <div className="absolute bg-[rgba(75,75,75,0.6)] h-full w-full top-0 left-0"></div>
-      <div className="relative flex justify-center mx-auto  text-white 2xl:w-10/12">
+      <div className="relative flex justify-center mx-auto text-white 2xl:w-10/12">
         <div className="xl:w-10/12 2xl:w-8/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
             <div

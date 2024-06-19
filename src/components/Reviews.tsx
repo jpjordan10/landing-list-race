@@ -5,8 +5,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import ReviewItemLoader from "./ReviewItemLoader";
+import Image from 'next/image';
 
-const testimonials = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+const testimonials = new Array(9).fill(null)
 
 const Reviews = () => {
   const [reviews, setReviews] = useState<ReviewItem[]>([]);
@@ -75,11 +76,13 @@ const Reviews = () => {
                   >
                     <div className="flex flex-col gap-4">
                       <div className="flex flex-row gap-3 items-center">
-                        <div className="">
-                          <img
+                        <div>
+                        <Image
                             src={x.img}
-                            alt="client"
-                            className="w-12 h-12 rounded-full"
+                            alt={`review-client-${x.id}`}
+                            width={48}
+                            height={48}
+                            className="rounded-full"
                           />
                         </div>
                         <div className="flex flex-col ml-3">
